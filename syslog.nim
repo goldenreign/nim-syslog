@@ -134,7 +134,7 @@ proc releaseSyslogLock() =
 
 # Internal procs (used inside critical section)
 proc reopenSyslogConnectionInternal() =
-  var sock_addr {.global.}: SockAddr = SockAddr(sa_family: posix.AF_UNIX, sa_data: syslog_socket_fname_a)
+  var sock_addr: SockAddr = SockAddr(sa_family: posix.AF_UNIX, sa_data: syslog_socket_fname_a)
   let addr_len {.global.} = Socklen(sizeof(sock_addr))
   if sock == SocketHandle(-1):
     sock = socket(AF_UNIX, SOCK_DGRAM, 0)
